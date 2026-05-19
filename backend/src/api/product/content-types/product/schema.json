@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "products",
+  "info": {
+    "singularName": "product",
+    "pluralName": "products",
+    "displayName": "Product",
+    "description": "Products (placeholder — enriched when InsForge sync is built)"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "price": {
+      "type": "decimal"
+    },
+    "images": {
+      "type": "json"
+    },
+    "in_stock": {
+      "type": "boolean",
+      "default": true
+    },
+    "briefings": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::briefing.briefing",
+      "mappedBy": "product"
+    }
+  }
+}

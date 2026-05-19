@@ -1,0 +1,53 @@
+{
+  "kind": "collectionType",
+  "collectionName": "videos",
+  "info": {
+    "singularName": "video",
+    "pluralName": "videos",
+    "displayName": "Video",
+    "description": "Analyzed TikTok videos"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "tiktok_url": {
+      "type": "string",
+      "required": true
+    },
+    "creator": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::creator.creator",
+      "inversedBy": "videos"
+    },
+    "views": {
+      "type": "integer"
+    },
+    "likes": {
+      "type": "integer"
+    },
+    "shares": {
+      "type": "integer"
+    },
+    "comments": {
+      "type": "integer"
+    },
+    "gmv_attributed": {
+      "type": "decimal"
+    },
+    "duration_seconds": {
+      "type": "integer"
+    },
+    "hook_text": {
+      "type": "text"
+    },
+    "transcript": {
+      "type": "richtext"
+    },
+    "analysis_json": {
+      "type": "json"
+    }
+  }
+}

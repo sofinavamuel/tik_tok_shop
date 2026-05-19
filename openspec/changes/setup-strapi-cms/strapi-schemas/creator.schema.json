@@ -1,0 +1,51 @@
+{
+  "kind": "collectionType",
+  "collectionName": "creators",
+  "info": {
+    "singularName": "creator",
+    "pluralName": "creators",
+    "displayName": "Creator",
+    "description": "TikTok creators tracked in the system"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "username": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "display_name": {
+      "type": "string"
+    },
+    "avatar": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "followers": {
+      "type": "integer"
+    },
+    "engagement_rate": {
+      "type": "decimal"
+    },
+    "avg_views": {
+      "type": "integer"
+    },
+    "niche": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "richtext"
+    },
+    "videos": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::video.video",
+      "mappedBy": "creator"
+    }
+  }
+}

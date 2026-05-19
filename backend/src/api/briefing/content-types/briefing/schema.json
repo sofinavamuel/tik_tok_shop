@@ -1,0 +1,52 @@
+{
+  "kind": "collectionType",
+  "collectionName": "briefings",
+  "info": {
+    "singularName": "briefing",
+    "pluralName": "briefings",
+    "displayName": "Briefing",
+    "description": "AI-generated or manual briefings for video production"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "product": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::product.product",
+      "inversedBy": "briefings"
+    },
+    "target_audience": {
+      "type": "text"
+    },
+    "hook_options": {
+      "type": "json"
+    },
+    "script": {
+      "type": "richtext"
+    },
+    "shotlist": {
+      "type": "json"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["draft", "approved", "produced"]
+    },
+    "ai_generated": {
+      "type": "boolean",
+      "default": false
+    },
+    "video_production": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::video-production.video-production",
+      "mappedBy": "briefing"
+    }
+  }
+}
