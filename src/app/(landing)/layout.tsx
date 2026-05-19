@@ -1,50 +1,31 @@
-import Link from 'next/link';
 import type { ReactNode } from 'react';
+import type { Metadata } from 'next';
+import { Header } from '@/components/landing/header';
+import { Footer } from '@/components/landing/footer';
+
+export const metadata: Metadata = {
+  title: {
+    default: 'Espacio EME — Creative Agency & Social Commerce',
+    template: '%s | Espacio EME',
+  },
+  description:
+    'Agencia creativa especializada en TikTok Shop, branding, producción de contenido con inteligencia artificial y desarrollo web. Estrategia data-driven para tu tienda en TikTok.',
+  openGraph: {
+    title: 'Espacio EME — Creative Agency & Social Commerce',
+    description:
+      'Agencia creativa especializada en TikTok Shop, branding, producción de contenido con IA y desarrollo web.',
+    siteName: 'Espacio EME',
+    locale: 'es_ES',
+    type: 'website',
+  },
+};
 
 export default function LandingLayout({ children }: { children: ReactNode }) {
   return (
     <div className="flex min-h-screen flex-col">
-      <header className="border-b border-gray-200">
-        <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-          <Link href="/" className="text-xl font-bold">
-            TikTok Shop
-          </Link>
-          <div className="flex items-center gap-6">
-            <Link
-              href="/about"
-              className="text-sm font-medium text-gray-600 hover:text-gray-900"
-            >
-              About
-            </Link>
-            <Link
-              href="/services"
-              className="text-sm font-medium text-gray-600 hover:text-gray-900"
-            >
-              Services
-            </Link>
-            <Link
-              href="/contact"
-              className="text-sm font-medium text-gray-600 hover:text-gray-900"
-            >
-              Contact
-            </Link>
-            <Link
-              href="/shop"
-              className="rounded-lg bg-black px-4 py-2 text-sm font-medium text-white hover:bg-gray-800"
-            >
-              Shop Now
-            </Link>
-          </div>
-        </nav>
-      </header>
+      <Header />
       <main className="flex-1">{children}</main>
-      <footer className="border-t border-gray-200">
-        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-          <p className="text-center text-sm text-gray-500">
-            &copy; {new Date().getFullYear()} TikTok Shop. All rights reserved.
-          </p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

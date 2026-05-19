@@ -1,0 +1,23 @@
+import { statsData } from '@/lib/landing-data';
+import { Container } from '@/components/ui/container';
+
+export function StatsSection() {
+  return (
+    <section className="bg-gradient-to-br from-indigo-600 via-blue-600 to-purple-600 py-16 md:py-20">
+      <Container>
+        <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
+          {statsData.map((stat) => (
+            <div key={stat.label} className="text-center">
+              <div className="text-4xl font-extrabold tracking-tight text-white md:text-5xl">
+                {stat.value}
+              </div>
+              <div className="mt-2 text-sm font-medium text-indigo-100">
+                {stat.label}
+              </div>
+            </div>
+          ))}
+        </div>
+      </Container>
+    </section>
+  );
+}

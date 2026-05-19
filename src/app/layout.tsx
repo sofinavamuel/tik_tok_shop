@@ -9,10 +9,11 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: 'TikTok Shop',
-    template: '%s | TikTok Shop',
+    default: 'Espacio EME',
+    template: '%s | Espacio EME',
   },
-  description: 'Shop the latest trends on TikTok Shop',
+  description:
+    'Agencia creativa especializada en TikTok Shop, branding, producción de contenido con IA y desarrollo web.',
 };
 
 export default function RootLayout({
