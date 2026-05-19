@@ -1,6 +1,14 @@
 import Stripe from 'stripe';
 
-export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY ?? '', {
-  apiVersion: '2026-04-22.dahlia',
-  typescript: true,
-});
+const secretKey = process.env.STRIPE_SECRET_KEY;
+
+if (!secretKey && typeof process !== 'undefined') {
+  console.warn('⚠️ STRIPE_SECRET_KEY is not set. Stripe will not work.');
+}
+
+export const stripe = secretKey
+  ? new Stripe(secretKey, {
+      apiVersion: '2026-04-22.dahlia' as any,
+      typescript: true,
+    })
+  : null;

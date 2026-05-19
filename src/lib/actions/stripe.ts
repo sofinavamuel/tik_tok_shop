@@ -6,6 +6,10 @@ import type { CartItem } from '@/types';
 
 export async function createCheckoutSession(items: CartItem[]) {
   try {
+    if (!stripe) {
+      return { error: 'Stripe is not configured. Add STRIPE_SECRET_KEY to your environment.' };
+    }
+
     const origin = (await headers()).get('origin') || 'http://localhost:3000';
 
     const line_items = items.map((item) => ({
@@ -45,6 +49,10 @@ export async function createCheckoutSession(items: CartItem[]) {
 
 export async function verifyCheckoutSession(sessionId: string) {
   try {
+    if (!stripe) {
+      return { error: 'Stripe is not configured.' };
+    }
+
     const session = await stripe.checkout.sessions.retrieve(sessionId);
 
     return {

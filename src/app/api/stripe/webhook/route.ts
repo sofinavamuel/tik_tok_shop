@@ -13,6 +13,13 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    if (!stripe) {
+      return NextResponse.json(
+        { error: 'Stripe is not configured' },
+        { status: 500 },
+      );
+    }
+
     const event = stripe.webhooks.constructEvent(
       rawBody,
       signature,
