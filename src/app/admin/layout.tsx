@@ -8,6 +8,7 @@ import {
   Package,
   FolderTree,
   ShoppingCart,
+  Sparkles,
   Menu,
   X,
 } from 'lucide-react';
@@ -18,6 +19,7 @@ const sidebarLinks = [
   { href: '/admin/products', label: 'Products', icon: Package },
   { href: '/admin/categories', label: 'Categories', icon: FolderTree },
   { href: '/admin/orders', label: 'Orders', icon: ShoppingCart },
+  { href: '/admin/analysis', label: 'Analysis', icon: Sparkles },
 ];
 
 export default function AdminLayout({
