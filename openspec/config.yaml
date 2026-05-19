@@ -1,0 +1,74 @@
+# openspec/config.yaml
+schema: spec-driven
+
+context: |
+  Tech stack: Next.js (App Router) + TypeScript + Tailwind CSS 3.4
+  Architecture: TikTok Shop — 3 frontend modules + 2 backends + external APIs
+  Backend 1: InsForge BaaS (PostgreSQL — tables: categories, products, auth, storage)
+  Backend 2: Strapi CMS (self-hosted — creators, videos, briefings, markets, analysis)
+  External APIs: TikTok Shop Open API (partner), Kalodata (market data via CSV)
+  AI Pipeline: Claude/OpenAI API + Whisper for video analysis, transcription, briefing generation
+  Payment: Stripe
+  Testing: None detected (pre-scaffold)
+
+strict_tdd: false
+
+rules:
+  proposal:
+    - Include rollback plan for risky changes
+    - Identify affected modules (public, admin, landing, strapi, insforge)
+    - Specify if change touches Stripe payments, TikTok API, or AI pipeline
+  specs:
+    - Use Given/When/Then format for scenarios
+    - Use RFC 2119 keywords (MUST, SHALL, SHOULD, MAY)
+    - Separate specs by module (public, admin, landing, strapi, api-integration)
+  design:
+    - Include sequence diagrams for complex flows (payments, auth, API sync)
+    - Document architecture decisions with rationale
+    - Show data flow between Next.js, InsForge, Strapi, TikTok API, and Stripe
+  tasks:
+    - Group tasks by phase (infrastructure, implementation, testing)
+    - Use hierarchical numbering (1.1, 1.2, etc.)
+    - Keep tasks small enough to complete in one session
+  apply:
+    - Follow existing code patterns and conventions
+    - Load relevant coding skills for the project stack
+    - Always call InsForge fetch-docs before writing InsForge integration code
+    - Lock Tailwind CSS to v3.4 (do NOT upgrade to v4)
+  verify:
+    - Compare implementation against every spec scenario
+    - Verify Stripe integration in test mode
+    - Check InsForge SDK usage matches fetched docs
+  archive:
+    - Warn before merging destructive deltas (large removals)
+
+testing:
+  strict_tdd: false
+  detected: 2026-05-19
+  reason: "No test runner detected — project has not been scaffolded yet"
+  test_runner:
+    command: ""
+    framework: ""
+  test_layers:
+    unit:
+      available: false
+      tool: ""
+    integration:
+      available: false
+      tool: ""
+    e2e:
+      available: false
+      tool: ""
+  coverage:
+    available: false
+    command: ""
+  quality_tools:
+    linter:
+      available: false
+      command: ""
+    type_checker:
+      available: false
+      command: ""
+    formatter:
+      available: false
+      command: ""
