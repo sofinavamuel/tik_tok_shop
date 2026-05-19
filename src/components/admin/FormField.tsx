@@ -20,6 +20,7 @@ interface FormFieldProps {
   placeholder?: string;
   options?: SelectOption[];
   min?: number;
+  max?: number;
   step?: number;
   disabled?: boolean;
   rows?: number;
@@ -36,6 +37,7 @@ export default function FormField({
   placeholder,
   options,
   min,
+  max,
   step,
   disabled = false,
   rows = 4,
@@ -94,6 +96,7 @@ export default function FormField({
           placeholder={placeholder}
           disabled={disabled}
           min={min}
+          max={max}
           step={step}
           className={`${inputClasses} ${errorClasses}`}
         />
