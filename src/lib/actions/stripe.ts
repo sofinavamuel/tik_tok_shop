@@ -12,17 +12,30 @@ export async function createCheckoutSession(items: CartItem[]) {
 
     const origin = (await headers()).get('origin') || 'http://localhost:3000';
 
-    const line_items = items.map((item) => ({
-      price_data: {
-        currency: 'eur',
-        product_data: {
-          name: item.product.name,
-          images: item.product.images?.length ? [item.product.images[0]] : [],
+    const line_items = items.map((item) => {
+      const priceId = item.product.stripe_price_id;
+
+      // Use stored price_id if available
+      if (priceId) {
+        return {
+          price: priceId,
+          quantity: item.quantity,
+        };
+      }
+
+      // Fallback to inline price_data when price_id is absent
+      return {
+        price_data: {
+          currency: 'eur',
+          product_data: {
+            name: item.product.name,
+            images: item.product.images?.length ? [item.product.images[0]] : [],
+          },
+          unit_amount: Math.round(item.product.price * 100), // cents
         },
-        unit_amount: Math.round(item.product.price * 100), // cents
-      },
-      quantity: item.quantity,
-    }));
+        quantity: item.quantity,
+      };
+    });
 
     const session = await stripe.checkout.sessions.create({
       line_items,

@@ -4,14 +4,29 @@ import type { NextRequest } from 'next/server';
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Admin routes — check for authentication
+  // Skip static assets
+  if (
+    pathname.startsWith('/_next') ||
+    pathname.startsWith('/favicon.ico') ||
+    /\.(svg|png|jpg|jpeg|gif|webp|css|js)$/.test(pathname)
+  ) {
+    return NextResponse.next();
+  }
+
+  // Check for InsForge session cookie
+  const sessionCookie =
+    request.cookies.get('insforge_refresh_token') ??
+    request.cookies.get('insforge_session');
+
+  const isAuthenticated = !!sessionCookie;
+
+  // Admin routes — require authentication
   if (pathname.startsWith('/admin')) {
-    // TODO: Check for valid session cookie / token
-    // If no session, redirect to login:
-    // const session = request.cookies.get('session');
-    // if (!session) {
-    //   return NextResponse.redirect(new URL('/shop/auth/login', request.url));
-    // }
+    if (!isAuthenticated) {
+      const loginUrl = new URL('/shop/auth/login', request.url);
+      loginUrl.searchParams.set('redirect', pathname);
+      return NextResponse.redirect(loginUrl);
+    }
   }
 
   // Auth pages — redirect to shop if already authenticated
@@ -19,11 +34,9 @@ export function proxy(request: NextRequest) {
     pathname.startsWith('/shop/auth/login') ||
     pathname.startsWith('/shop/auth/register')
   ) {
-    // TODO: If session exists, redirect to /shop
-    // const session = request.cookies.get('session');
-    // if (session) {
-    //   return NextResponse.redirect(new URL('/shop', request.url));
-    // }
+    if (isAuthenticated) {
+      return NextResponse.redirect(new URL('/shop', request.url));
+    }
   }
 
   return NextResponse.next();

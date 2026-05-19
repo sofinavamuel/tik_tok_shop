@@ -19,6 +19,7 @@ export interface Product {
   featured: boolean;
   in_stock: boolean;
   created_at?: string;
+  stripe_price_id?: string;
 }
 
 export interface CartItem {

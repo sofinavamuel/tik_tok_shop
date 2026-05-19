@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
 import {
   LayoutDashboard,
@@ -11,8 +11,10 @@ import {
   Sparkles,
   Menu,
   X,
+  LogOut,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useAuth } from '@/hooks/useAuth';
 
 const sidebarLinks = [
   { href: '/admin', label: 'Dashboard', icon: LayoutDashboard },
@@ -28,13 +30,20 @@ export default function AdminLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
+  const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { user, loading, signOut } = useAuth();
 
   const isActive = (href: string) => {
     if (href === '/admin') {
       return pathname === '/admin';
     }
     return pathname.startsWith(href);
+  };
+
+  const handleSignOut = async () => {
+    await signOut();
+    router.push('/shop');
   };
 
   return (
@@ -89,13 +98,55 @@ export default function AdminLayout({
           })}
         </nav>
 
-        <div className="border-t border-gray-200 px-6 py-4">
-          <Link
-            href="/shop"
-            className="text-sm text-gray-500 hover:text-gray-700"
-          >
-            ← Back to Shop
-          </Link>
+        {/* User section */}
+        <div className="border-t border-gray-200 px-4 py-3">
+          {loading ? (
+            <div className="flex items-center gap-3">
+              <div className="h-8 w-8 animate-pulse rounded-full bg-gray-200" />
+              <div className="flex-1">
+                <div className="h-3 w-24 animate-pulse rounded bg-gray-200" />
+                <div className="mt-1 h-2 w-32 animate-pulse rounded bg-gray-100" />
+              </div>
+            </div>
+          ) : user ? (
+            <div className="space-y-3">
+              <div className="flex items-center gap-3">
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-900 text-sm font-medium text-white">
+                  {user.name?.[0]?.toUpperCase() || user.email[0].toUpperCase()}
+                </div>
+                <div className="min-w-0 flex-1">
+                  <p className="truncate text-sm font-medium text-gray-900">
+                    {user.name || user.email}
+                  </p>
+                  {user.name && (
+                    <p className="truncate text-xs text-gray-500">{user.email}</p>
+                  )}
+                </div>
+              </div>
+              <div className="flex gap-2">
+                <Link
+                  href="/shop"
+                  className="flex-1 text-center text-xs text-gray-500 hover:text-gray-700"
+                >
+                  ← Shop
+                </Link>
+                <button
+                  onClick={handleSignOut}
+                  className="flex items-center gap-1 rounded-lg px-2 py-1 text-xs text-red-600 hover:bg-red-50"
+                >
+                  <LogOut className="h-3 w-3" />
+                  Sign out
+                </button>
+              </div>
+            </div>
+          ) : (
+            <Link
+              href="/shop/auth/login"
+              className="text-sm text-gray-500 hover:text-gray-700"
+            >
+              ← Sign in
+            </Link>
+          )}
         </div>
       </aside>
 
