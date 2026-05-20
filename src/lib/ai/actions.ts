@@ -2,10 +2,12 @@
 
 import { analyzeVideo } from './analyze-video';
 import { generateBriefing } from './generate-briefing';
+import { generateContentIdeas } from './generate-content-ideas';
 import { insforge } from '@/lib/insforge';
 import { createVideo, createBriefing } from '@/lib/strapi/client';
 import type { VideoAnalysisInput, VideoAnalysisResult } from './analyze-video';
 import type { BriefingInput, BriefingResult } from './generate-briefing';
+import type { ContentIdeaInput, ContentIdeasResult } from './generate-content-ideas';
 import type { Product } from '@/types';
 
 export async function analyzeVideoAction(input: VideoAnalysisInput): Promise<VideoAnalysisResult> {
@@ -14,6 +16,10 @@ export async function analyzeVideoAction(input: VideoAnalysisInput): Promise<Vid
 
 export async function generateBriefingAction(input: BriefingInput): Promise<BriefingResult> {
   return generateBriefing(input);
+}
+
+export async function generateContentIdeasAction(input: ContentIdeaInput): Promise<ContentIdeasResult> {
+  return generateContentIdeas(input);
 }
 
 export async function getProductsAction(): Promise<Product[]> {

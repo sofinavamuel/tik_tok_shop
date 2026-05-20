@@ -1,18 +1,18 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { ArrowRight, ShoppingBag } from 'lucide-react';
+import { ArrowRight, Clapperboard } from 'lucide-react';
 import { ServicesSection } from '@/components/landing/services-section';
 import { MethodologySection } from '@/components/landing/methodology-section';
 import { StatsSection } from '@/components/landing/stats-section';
 
 export const metadata: Metadata = {
-  title: 'Espacio EME — Creative Agency & Social Commerce',
+  title: 'Espacio EME — Content Creation Powered by TikTok Shop Data',
   description:
-    'Creamos tu presencia en TikTok Shop con datos e IA. Investigación de mercado, análisis de competencia, producción de contenido con inteligencia artificial y estrategia data-driven.',
+    'Usamos datos de TikTok Shop para crear contenido viral. Detectamos productos trending, analizamos hooks que funcionan y generamos guiones con IA para tu marca.',
   openGraph: {
-    title: 'Espacio EME — Creative Agency & Social Commerce',
+    title: 'Espacio EME — Content Creation Powered by TikTok Shop Data',
     description:
-      'Creamos tu presencia en TikTok Shop con datos e IA. Investigación de mercado, análisis de competencia, producción de contenido con inteligencia artificial y estrategia data-driven.',
+      'Usamos datos de TikTok Shop para crear contenido viral. Detectamos productos trending, analizamos hooks que funcionan y generamos guiones con IA para tu marca.',
   },
 };
 
@@ -28,21 +28,21 @@ export default function LandingPage() {
           <div className="mx-auto max-w-3xl text-center">
             <div className="mb-6 inline-flex items-center rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-sm font-medium text-white backdrop-blur-sm">
               <span className="mr-2 h-2 w-2 animate-pulse rounded-full bg-green-400" />
-              Agencia Creativa &amp; Social Commerce
+              Agencia de Contenido &amp; Data-Driven Creative
             </div>
 
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
-              Creamos tu presencia{' '}
+              Creamos{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-300 to-amber-300">
-                en TikTok Shop
+                contenido viral
               </span>{' '}
-              con datos e IA
+              con datos de TikTok Shop
             </h1>
 
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-indigo-100 sm:text-xl">
-              Investigación de mercado, análisis de competencia, producción de
-              contenido con inteligencia artificial y estrategia data-driven para
-              tu tienda en TikTok Shop.
+              No vendemos en TikTok Shop — lo usamos como fuente de datos. Detectamos
+              productos trending, analizamos los hooks y estructuras que mejor funcionan,
+              y generamos ideas de contenido con IA para tu marca o clientes.
             </p>
 
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
@@ -54,11 +54,11 @@ export default function LandingPage() {
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
               <Link
-                href="/shop"
+                href="/contact"
                 className="inline-flex items-center rounded-xl border-2 border-white/30 px-8 py-3.5 text-base font-semibold text-white transition-all hover:border-white/50 hover:bg-white/10"
               >
-                <ShoppingBag className="mr-2 h-5 w-5" />
-                Catálogo
+                <Clapperboard className="mr-2 h-5 w-5" />
+                Hablar con un experto
               </Link>
             </div>
           </div>
@@ -82,11 +82,11 @@ export default function LandingPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              ¿Listo para impulsar tu marca en TikTok Shop?
+              ¿Listo para crear contenido que funciona?
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-gray-600">
-              Descubre cómo nuestra metodología data-driven puede transformar tu
-              presencia en TikTok.
+              Nuestra metodología usa datos reales de TikTok Shop para generar ideas
+              de contenido con hooks, guiones y ángulos que ya sabemos que funcionan.
             </p>
             <div className="mt-8">
               <Link

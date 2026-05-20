@@ -15,18 +15,23 @@ import {
   FileText,
   BarChart3,
   Bot,
+  Clapperboard,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useAuth } from '@/hooks/useAuth';
 
 const sidebarLinks = [
   { href: '/admin', label: 'Dashboard', icon: LayoutDashboard },
-  { href: '/admin/products', label: 'Products', icon: Package },
-  { href: '/admin/categories', label: 'Categories', icon: FolderTree },
-  { href: '/admin/orders', label: 'Orders', icon: ShoppingCart },
+  { href: '/admin/content-studio', label: 'Content Studio', icon: Clapperboard },
   { href: '/admin/briefings', label: 'Briefings', icon: FileText },
   { href: '/admin/analysis', label: 'Analysis', icon: Sparkles },
   { href: '/admin/agents', label: 'Agents', icon: Bot },
+];
+
+const storeLinks = [
+  { href: '/admin/products', label: 'Products', icon: Package },
+  { href: '/admin/categories', label: 'Categories', icon: FolderTree },
+  { href: '/admin/orders', label: 'Orders', icon: ShoppingCart },
 ];
 
 const marketIntelLinks = [
@@ -85,9 +90,39 @@ export default function AdminLayout({
         </div>
 
         <nav className="flex-1 space-y-4 px-3 py-4">
-          {/* Main section */}
+          {/* Content section */}
           <div>
+            <p className="mb-1 px-3 text-xs font-semibold uppercase tracking-wider text-gray-400">
+              Content Creation
+            </p>
             {sidebarLinks.map((link) => {
+              const Icon = link.icon;
+              const active = isActive(link.href);
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={cn(
+                    'flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors',
+                    active
+                      ? 'bg-gray-900 text-white'
+                      : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900',
+                  )}
+                >
+                  <Icon className="h-4 w-4" />
+                  {link.label}
+                </Link>
+              );
+            })}
+          </div>
+
+          {/* Store section */}
+          <div>
+            <p className="mb-1 px-3 text-xs font-semibold uppercase tracking-wider text-gray-400">
+              Store
+            </p>
+            {storeLinks.map((link) => {
               const Icon = link.icon;
               const active = isActive(link.href);
               return (
