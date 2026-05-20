@@ -61,20 +61,20 @@ const socialLinks = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-gray-200 bg-gray-50">
+    <footer className="border-t border-border bg-gray-50">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {/* Company */}
           <div>
             <Link href="/" className="flex items-center gap-2">
-              <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-600 to-purple-600 text-[10px] font-bold text-white">
+              <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-brand text-[10px] font-bold text-white">
                 EE
               </div>
-              <span className="text-base font-bold tracking-tight text-gray-900">
-                Espacio <span className="text-indigo-600">EME</span>
+              <span className="text-base font-bold tracking-tight text-text">
+                Espacio <span className="text-brand">EME</span>
               </span>
             </Link>
-            <p className="mt-3 text-sm leading-relaxed text-gray-600">
+            <p className="mt-3 text-sm leading-relaxed text-text-muted">
               Agencia creativa especializada en TikTok Shop, branding,
               producción de contenido con IA y desarrollo web.
             </p>
@@ -82,14 +82,14 @@ export function Footer() {
 
           {/* Company Links */}
           <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-gray-900">
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-text">
               Company
             </h3>
             <ul className="space-y-3">
               <li>
                 <Link
                   href="/about"
-                  className="text-sm text-gray-600 transition-colors hover:text-indigo-600"
+                  className="text-sm text-text-muted transition-colors hover:text-brand"
                 >
                   Sobre Nosotros
                 </Link>
@@ -97,7 +97,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/services"
-                  className="text-sm text-gray-600 transition-colors hover:text-indigo-600"
+                  className="text-sm text-text-muted transition-colors hover:text-brand"
                 >
                   Servicios
                 </Link>
@@ -105,7 +105,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/contact"
-                  className="text-sm text-gray-600 transition-colors hover:text-indigo-600"
+                  className="text-sm text-text-muted transition-colors hover:text-brand"
                 >
                   Contacto
                 </Link>
@@ -115,14 +115,14 @@ export function Footer() {
 
           {/* Services Links */}
           <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-gray-900">
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-text">
               Services
             </h3>
             <ul className="space-y-3">
               <li>
                 <Link
                   href="/services/branding"
-                  className="text-sm text-gray-600 transition-colors hover:text-indigo-600"
+                  className="text-sm text-text-muted transition-colors hover:text-brand"
                 >
                   Branding & Design
                 </Link>
@@ -130,7 +130,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/services/social-commerce"
-                  className="text-sm text-gray-600 transition-colors hover:text-indigo-600"
+                  className="text-sm text-text-muted transition-colors hover:text-brand"
                 >
                   Social Commerce
                 </Link>
@@ -138,7 +138,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/services/content-ai"
-                  className="text-sm text-gray-600 transition-colors hover:text-indigo-600"
+                  className="text-sm text-text-muted transition-colors hover:text-brand"
                 >
                   Content AI
                 </Link>
@@ -146,7 +146,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/services/web-development"
-                  className="text-sm text-gray-600 transition-colors hover:text-indigo-600"
+                  className="text-sm text-text-muted transition-colors hover:text-brand"
                 >
                   Web Development
                 </Link>
@@ -156,7 +156,7 @@ export function Footer() {
 
           {/* Connect & Newsletter */}
           <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-gray-900">
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-text">
               Connect
             </h3>
             <div className="mb-6 flex gap-3">
@@ -168,7 +168,7 @@ export function Footer() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-300 text-gray-500 transition-colors hover:border-indigo-300 hover:bg-indigo-50 hover:text-indigo-600"
+                    className="flex h-9 w-9 items-center justify-center rounded-lg border border-border text-text-muted transition-colors hover:border-brand/30 hover:bg-brand/5 hover:text-brand"
                     aria-label={social.label}
                   >
                     <Icon className="h-4 w-4" />
@@ -176,21 +176,21 @@ export function Footer() {
                 );
               })}
             </div>
-            <h4 className="mb-2 text-sm font-medium text-gray-900">
+            <h4 className="mb-2 text-sm font-medium text-text">
               Newsletter
             </h4>
-            <p className="mb-3 text-xs text-gray-500">
+            <p className="mb-3 text-xs text-text-muted">
               Recibe las últimas tendencias en TikTok Shop.
             </p>
             <div className="flex gap-2">
               <input
                 type="email"
                 placeholder="tu@email.com"
-                className="min-w-0 flex-1 rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 placeholder-gray-400 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                className="min-w-0 flex-1 rounded-lg border border-border px-3 py-2 text-sm text-text placeholder-text-muted/60 focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand"
               />
               <button
                 type="button"
-                className="rounded-lg bg-indigo-600 px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-indigo-700"
+                className="rounded-lg bg-brand px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-brand-dark"
               >
                 Suscribir
               </button>
@@ -198,8 +198,8 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 border-t border-gray-200 pt-6 text-center">
-          <p className="text-sm text-gray-500">
+        <div className="mt-10 border-t border-border pt-6 text-center">
+          <p className="text-sm text-text-muted">
             &copy; {new Date().getFullYear()} Espacio EME. Todos los derechos
             reservados.
           </p>

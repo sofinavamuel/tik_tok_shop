@@ -20,9 +20,9 @@ const sizeClasses = {
 
 const variantClasses = {
   light: 'bg-white',
-  dark: 'bg-gray-900 text-white',
+  dark: 'bg-dark text-white',
   gradient:
-    'bg-gradient-to-br from-indigo-600 via-blue-600 to-purple-600 text-white',
+    'bg-dark text-white',
 };
 
 export function Section({

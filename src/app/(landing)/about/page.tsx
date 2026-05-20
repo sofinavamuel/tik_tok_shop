@@ -19,12 +19,12 @@ export default function AboutPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-gradient-to-br from-indigo-600 via-blue-600 to-purple-700 py-20 md:py-28">
+      <section className="bg-dark py-20 md:py-28">
         <Container className="text-center">
           <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
             Sobre Nosotros
           </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-indigo-100">
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-400">
             Diseño, tecnología y datos para impulsar tu marca en TikTok Shop
           </p>
         </Container>
@@ -32,9 +32,9 @@ export default function AboutPage() {
 
       {/* Story */}
       <Section title="Nuestra Historia" size="lg">
-        <div className="mx-auto max-w-3xl space-y-6 text-lg leading-relaxed text-gray-600">
+        <div className="mx-auto max-w-3xl space-y-6 text-lg leading-relaxed text-text-muted">
           <p>
-            <strong className="text-gray-900">Somos Espacio EME</strong>, una
+            <strong className="text-text">Somos Espacio EME</strong>, una
             agencia creativa que combina diseño, tecnología y datos para
             impulsar tu presencia en TikTok Shop.
           </p>
@@ -47,7 +47,7 @@ export default function AboutPage() {
           </p>
           <p>
             Hoy trabajamos con marcas de{' '}
-            <strong className="text-gray-900">
+            <strong className="text-text">
               4 categorías distintas en 3 mercados
             </strong>
             , ayudándolas a construir presencia, vender más y escalar su
@@ -71,7 +71,7 @@ export default function AboutPage() {
                 key={value.title}
                 className="rounded-2xl border border-gray-800 bg-gray-800/50 p-6 text-center backdrop-blur-sm"
               >
-                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-500/20 text-indigo-400">
+                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-brand/20 text-brand">
                   {Icon && <Icon className="h-6 w-6" />}
                 </div>
                 <h3 className="mt-4 text-lg font-semibold text-white">
@@ -92,12 +92,12 @@ export default function AboutPage() {
         title="Nuestro Enfoque"
         subtitle="Cómo trabajamos para lograr resultados"
       >
-        <div className="mx-auto max-w-3xl space-y-6 text-lg leading-relaxed text-gray-600">
+        <div className="mx-auto max-w-3xl space-y-6 text-lg leading-relaxed text-text-muted">
           <p>
             No creemos en recetas mágicas. Cada marca, cada categoría, cada
             mercado tiene sus propias dinámicas. Por eso nuestro proceso
             comienza siempre con{' '}
-            <strong className="text-gray-900">investigación y datos</strong>,
+            <strong className="text-text">investigación y datos</strong>,
             no con suposiciones.
           </p>
           <p>

@@ -80,12 +80,12 @@ export default function ContactPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-gradient-to-br from-indigo-600 via-blue-600 to-purple-700 py-20 md:py-28">
+      <section className="bg-dark py-20 md:py-28">
         <Container className="text-center">
           <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
             Contáctanos
           </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-indigo-100">
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-400">
             Cuéntanos sobre tu proyecto y te enviaremos una propuesta
             personalizada.
           </p>
@@ -97,10 +97,10 @@ export default function ContactPage() {
           <div className="grid gap-12 lg:grid-cols-5">
             {/* Form */}
             <div className="lg:col-span-3">
-              <h2 className="text-2xl font-bold text-gray-900">
+              <h2 className="text-2xl font-bold text-text">
                 Envíanos un mensaje
               </h2>
-              <p className="mt-2 text-sm text-gray-600">
+              <p className="mt-2 text-sm text-text-muted">
                 Completa el formulario y te responderemos en menos de 24 horas.
               </p>
 
@@ -109,7 +109,7 @@ export default function ContactPage() {
                   <div>
                     <label
                       htmlFor="name"
-                      className="block text-sm font-medium text-gray-700"
+                      className="block text-sm font-medium text-text"
                     >
                       Nombre *
                     </label>
@@ -118,14 +118,14 @@ export default function ContactPage() {
                       id="name"
                       name="name"
                       required
-                      className="mt-1 block w-full rounded-xl border border-gray-300 px-4 py-3 text-sm text-gray-900 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                      className="mt-1 block w-full rounded-xl border border-border px-4 py-3 text-sm text-text placeholder-text-muted/60 shadow-sm focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand"
                       placeholder="Tu nombre"
                     />
                   </div>
                   <div>
                     <label
                       htmlFor="email"
-                      className="block text-sm font-medium text-gray-700"
+                      className="block text-sm font-medium text-text"
                     >
                       Email *
                     </label>
@@ -134,7 +134,7 @@ export default function ContactPage() {
                       id="email"
                       name="email"
                       required
-                      className="mt-1 block w-full rounded-xl border border-gray-300 px-4 py-3 text-sm text-gray-900 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                      className="mt-1 block w-full rounded-xl border border-border px-4 py-3 text-sm text-text placeholder-text-muted/60 shadow-sm focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand"
                       placeholder="tu@email.com"
                     />
                   </div>
@@ -144,7 +144,7 @@ export default function ContactPage() {
                   <div>
                     <label
                       htmlFor="phone"
-                      className="block text-sm font-medium text-gray-700"
+                      className="block text-sm font-medium text-text"
                     >
                       Teléfono
                     </label>
@@ -152,14 +152,14 @@ export default function ContactPage() {
                       type="tel"
                       id="phone"
                       name="phone"
-                      className="mt-1 block w-full rounded-xl border border-gray-300 px-4 py-3 text-sm text-gray-900 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                      className="mt-1 block w-full rounded-xl border border-border px-4 py-3 text-sm text-text placeholder-text-muted/60 shadow-sm focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand"
                       placeholder="+34 600 000 000"
                     />
                   </div>
                   <div>
                     <label
                       htmlFor="service"
-                      className="block text-sm font-medium text-gray-700"
+                      className="block text-sm font-medium text-text"
                     >
                       Servicio de interés *
                     </label>
@@ -167,7 +167,7 @@ export default function ContactPage() {
                       id="service"
                       name="service"
                       required
-                      className="mt-1 block w-full rounded-xl border border-gray-300 px-4 py-3 text-sm text-gray-900 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                      className="mt-1 block w-full rounded-xl border border-border px-4 py-3 text-sm text-text shadow-sm focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand"
                     >
                       <option value="">Selecciona un servicio</option>
                       {servicesData.map((s) => (
@@ -182,7 +182,7 @@ export default function ContactPage() {
                 <div>
                   <label
                     htmlFor="message"
-                    className="block text-sm font-medium text-gray-700"
+                    className="block text-sm font-medium text-text"
                   >
                     Mensaje *
                   </label>
@@ -191,14 +191,14 @@ export default function ContactPage() {
                     name="message"
                     rows={5}
                     required
-                    className="mt-1 block w-full rounded-xl border border-gray-300 px-4 py-3 text-sm text-gray-900 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                    className="mt-1 block w-full rounded-xl border border-border px-4 py-3 text-sm text-text placeholder-text-muted/60 shadow-sm focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand"
                     placeholder="Cuéntanos sobre tu proyecto..."
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="inline-flex items-center rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 px-8 py-3.5 text-sm font-semibold text-white shadow-sm transition-all hover:from-indigo-500 hover:to-purple-500 hover:shadow-md"
+                  className="inline-flex items-center rounded-xl bg-brand px-8 py-3.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-brand-dark hover:shadow-md"
                 >
                   <Send className="mr-2 h-4 w-4" />
                   Enviar Mensaje
@@ -214,21 +214,21 @@ export default function ContactPage() {
 
             {/* Contact Info */}
             <div className="lg:col-span-2">
-              <div className="rounded-2xl border border-gray-200 bg-gray-50 p-8">
-                <h3 className="text-lg font-semibold text-gray-900">
+              <div className="rounded-2xl border border-border bg-gray-50 p-8">
+                <h3 className="text-lg font-semibold text-text">
                   Información de contacto
                 </h3>
 
                 <div className="mt-6 space-y-5">
                   <div className="flex items-start gap-3">
-                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-indigo-100 text-indigo-600">
+                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-brand/10 text-brand">
                       <Mail className="h-5 w-5" />
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-gray-900">Email</p>
+                      <p className="text-sm font-medium text-text">Email</p>
                       <a
                         href="mailto:email@espacioeme.com"
-                        className="text-sm text-indigo-600 hover:text-indigo-700"
+                        className="text-sm text-brand hover:text-brand-dark"
                       >
                         email@espacioeme.com
                       </a>
@@ -236,23 +236,23 @@ export default function ContactPage() {
                   </div>
 
                   <div className="flex items-start gap-3">
-                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-indigo-100 text-indigo-600">
+                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-brand/10 text-brand">
                       <MapPin className="h-5 w-5" />
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-gray-900">
+                      <p className="text-sm font-medium text-text">
                         Ubicación
                       </p>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-text-muted">
                         España / Latinoamérica
                       </p>
                     </div>
                   </div>
                 </div>
 
-                <hr className="my-6 border-gray-200" />
+                <hr className="my-6 border-border" />
 
-                <h4 className="text-sm font-semibold text-gray-900">
+                <h4 className="text-sm font-semibold text-text">
                   Síguenos
                 </h4>
                 <div className="mt-4 flex gap-3">
@@ -264,7 +264,7 @@ export default function ContactPage() {
                         href={social.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex h-10 w-10 items-center justify-center rounded-xl border border-gray-300 text-gray-500 transition-colors hover:border-indigo-300 hover:bg-indigo-50 hover:text-indigo-600"
+                        className="flex h-10 w-10 items-center justify-center rounded-xl border border-border text-text-muted transition-colors hover:border-brand/30 hover:bg-brand/5 hover:text-brand"
                         aria-label={social.label}
                       >
                         <Icon className="h-4 w-4" />

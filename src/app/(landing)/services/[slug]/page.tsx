@@ -45,11 +45,11 @@ export default async function ServiceDetailPage({ params }: Props) {
   return (
     <>
       {/* Hero */}
-      <section className="bg-gradient-to-br from-indigo-600 via-blue-600 to-purple-700 py-20 md:py-28">
+      <section className="bg-dark py-20 md:py-28">
         <Container>
           <Link
             href="/services"
-            className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-indigo-200 transition-colors hover:text-white"
+            className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-gray-400 transition-colors hover:text-brand"
           >
             <ArrowLeft className="h-4 w-4" />
             Volver a servicios
@@ -62,7 +62,7 @@ export default async function ServiceDetailPage({ params }: Props) {
               <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
                 {service.title}
               </h1>
-              <p className="mt-2 text-lg text-indigo-100">
+              <p className="mt-2 text-lg text-gray-400">
                 {service.shortDesc}
               </p>
             </div>
@@ -76,44 +76,44 @@ export default async function ServiceDetailPage({ params }: Props) {
           <div className="mx-auto max-w-3xl">
             {/* Description */}
             <div className="prose prose-gray max-w-none">
-              <p className="text-lg leading-relaxed text-gray-600">
+              <p className="text-lg leading-relaxed text-text-muted">
                 {service.longDescription}
               </p>
             </div>
 
             {/* What's included */}
             <div className="mt-12">
-              <h2 className="text-2xl font-bold text-gray-900">
+              <h2 className="text-2xl font-bold text-text">
                 ¿Qué incluye este servicio?
               </h2>
               <ul className="mt-6 grid gap-4 sm:grid-cols-2">
                 {service.included.map((item) => (
                   <li
                     key={item}
-                    className="flex items-start gap-3 rounded-xl border border-gray-200 p-4"
+                    className="flex items-start gap-3 rounded-xl border border-border p-4"
                   >
-                    <span className="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-indigo-100 text-indigo-600">
+                    <span className="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-brand/10 text-brand">
                       <Check className="h-3.5 w-3.5" />
                     </span>
-                    <span className="text-sm text-gray-700">{item}</span>
+                    <span className="text-sm text-text">{item}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
             {/* CTA */}
-            <div className="mt-12 rounded-2xl bg-gradient-to-br from-indigo-50 to-purple-50 p-8 text-center">
-              <h3 className="text-xl font-bold text-gray-900">
+            <div className="mt-12 rounded-2xl bg-brand/5 border border-brand/20 p-8 text-center">
+              <h3 className="text-xl font-bold text-text">
                 ¿Interesado en este servicio?
               </h3>
-              <p className="mt-2 text-sm text-gray-600">
+              <p className="mt-2 text-sm text-text-muted">
                 Contáctanos y te enviaremos una propuesta personalizada para tu
                 marca.
               </p>
               <div className="mt-6">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 px-8 py-3.5 text-sm font-semibold text-white shadow-sm transition-all hover:from-indigo-500 hover:to-purple-500 hover:shadow-md"
+                  className="inline-flex items-center rounded-xl bg-brand px-8 py-3.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-brand-dark hover:shadow-md"
                 >
                   Solicitar Información
                   <ArrowRight className="ml-2 h-4 w-4" />
