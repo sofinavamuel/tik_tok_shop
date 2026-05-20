@@ -13,6 +13,7 @@ import {
   X,
   LogOut,
   FileText,
+  BarChart3,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useAuth } from '@/hooks/useAuth';
@@ -24,6 +25,10 @@ const sidebarLinks = [
   { href: '/admin/orders', label: 'Orders', icon: ShoppingCart },
   { href: '/admin/briefings', label: 'Briefings', icon: FileText },
   { href: '/admin/analysis', label: 'Analysis', icon: Sparkles },
+];
+
+const marketIntelLinks = [
+  { href: '/admin/kalodata', label: 'Market Intelligence', icon: BarChart3 },
 ];
 
 export default function AdminLayout({
@@ -77,27 +82,57 @@ export default function AdminLayout({
           </button>
         </div>
 
-        <nav className="flex-1 space-y-1 px-3 py-4">
-          {sidebarLinks.map((link) => {
-            const Icon = link.icon;
-            const active = isActive(link.href);
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className={cn(
-                  'flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors',
-                  active
-                    ? 'bg-gray-900 text-white'
-                    : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900',
-                )}
-              >
-                <Icon className="h-4 w-4" />
-                {link.label}
-              </Link>
-            );
-          })}
+        <nav className="flex-1 space-y-4 px-3 py-4">
+          {/* Main section */}
+          <div>
+            {sidebarLinks.map((link) => {
+              const Icon = link.icon;
+              const active = isActive(link.href);
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={cn(
+                    'flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors',
+                    active
+                      ? 'bg-gray-900 text-white'
+                      : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900',
+                  )}
+                >
+                  <Icon className="h-4 w-4" />
+                  {link.label}
+                </Link>
+              );
+            })}
+          </div>
+
+          {/* Market Intelligence section */}
+          <div>
+            <p className="mb-1 px-3 text-xs font-semibold uppercase tracking-wider text-gray-400">
+              Market Intelligence
+            </p>
+            {marketIntelLinks.map((link) => {
+              const Icon = link.icon;
+              const active = isActive(link.href);
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={cn(
+                    'flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors',
+                    active
+                      ? 'bg-gray-900 text-white'
+                      : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900',
+                  )}
+                >
+                  <Icon className="h-4 w-4" />
+                  {link.label}
+                </Link>
+              );
+            })}
+          </div>
         </nav>
 
         {/* User section */}

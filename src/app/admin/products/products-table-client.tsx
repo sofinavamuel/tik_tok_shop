@@ -9,6 +9,7 @@ import Pagination from '@/components/admin/Pagination';
 import DeleteButton from '@/components/admin/DeleteButton';
 import { formatPrice } from '@/lib/utils';
 import { syncProductsToStripe } from '@/lib/actions/sync-products';
+import { syncProductsToStrapi } from '@/lib/actions/sync-products-strapi';
 import { syncProductsToTikTokShop } from '@/lib/tiktok-shop/sync';
 import type { Product } from '@/types';
 
@@ -28,9 +29,10 @@ export default function ProductsTableClient({
   totalPages,
 }: ProductsTableClientProps) {
   const [syncingStripe, setSyncingStripe] = useState(false);
+  const [syncingStrapi, setSyncingStrapi] = useState(false);
   const [syncingTikTok, setSyncingTikTok] = useState(false);
   const [syncResult, setSyncResult] = useState<{
-    type: 'stripe' | 'tiktok';
+    type: 'stripe' | 'strapi' | 'tiktok';
     message: string;
     variant: 'success' | 'error' | 'info';
   } | null>(null);
@@ -56,6 +58,29 @@ export default function ProductsTableClient({
     }
 
     setSyncingStripe(false);
+  };
+
+  const handleSyncStrapi = async () => {
+    setSyncingStrapi(true);
+    setSyncResult(null);
+
+    const result = await syncProductsToStrapi();
+
+    if (result.error) {
+      setSyncResult({ type: 'strapi', message: result.error, variant: 'error' });
+    } else {
+      const parts = [];
+      if (result.synced) parts.push(`${result.synced} synced`);
+      if (result.skipped) parts.push(`${result.skipped} already synced`);
+      if (result.errors?.length) parts.push(`${result.errors.length} failed`);
+      setSyncResult({
+        type: 'strapi',
+        message: parts.join(', ') || 'No products to sync',
+        variant: result.errors?.length ? 'error' : 'success',
+      });
+    }
+
+    setSyncingStrapi(false);
   };
 
   const handleSyncTikTok = () => {
@@ -177,6 +202,14 @@ export default function ProductsTableClient({
         <div className="flex flex-wrap items-center gap-3">
           <SearchBar placeholder="Search products..." />
           <button
+            onClick={handleSyncStrapi}
+            disabled={syncingStrapi}
+            className="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <RefreshCw className={`h-4 w-4 ${syncingStrapi ? 'animate-spin' : ''}`} />
+            {syncingStrapi ? 'Syncing...' : 'Sync to Strapi'}
+          </button>
+          <button
             onClick={handleSyncStripe}
             disabled={syncingStripe}
             className="inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed"
@@ -209,7 +242,7 @@ export default function ProductsTableClient({
         >
           <div className="flex items-center justify-between">
             <span>
-              {syncResult.type === 'stripe' ? 'Stripe:' : 'TikTok Shop:'} {syncResult.message}
+              {syncResult.type === 'stripe' ? 'Stripe:' : syncResult.type === 'strapi' ? 'Strapi:' : 'TikTok Shop:'} {syncResult.message}
             </span>
             <button
               onClick={() => setSyncResult(null)}
