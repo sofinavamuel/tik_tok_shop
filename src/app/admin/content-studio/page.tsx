@@ -73,7 +73,7 @@ function IdeaCard({ idea, index }: { idea: ContentIdea; index: number }) {
       <div className="border-b border-gray-100 bg-gradient-to-r from-gray-50 to-white p-5">
         <div className="flex items-start justify-between gap-4">
           <div className="flex items-start gap-3">
-            <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 text-white font-bold text-sm">
+            <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-gradient-to-br bg-brand text-white font-bold text-sm">
               {index + 1}
             </div>
             <div>
@@ -107,17 +107,17 @@ function IdeaCard({ idea, index }: { idea: ContentIdea; index: number }) {
 
       {/* Recommended Hook */}
       <div className="px-5 py-4">
-        <div className="rounded-lg bg-indigo-50 border border-indigo-100 p-4">
+        <div className="rounded-lg bg-brand/10 border border-brand/20 p-4">
           <div className="flex items-center gap-2 mb-2">
-            <Lightbulb className="h-4 w-4 text-indigo-600" />
-            <span className="text-sm font-semibold text-indigo-700">Recommended Hook</span>
+            <Lightbulb className="h-4 w-4 text-brand" />
+            <span className="text-sm font-semibold text-brand-dark">Recommended Hook</span>
           </div>
-          <p className="text-base font-medium text-indigo-900">&ldquo;{idea.recommendedHook}&rdquo;</p>
+          <p className="text-base font-medium text-brand-darker">&ldquo;{idea.recommendedHook}&rdquo;</p>
           <div className="mt-2 flex flex-wrap gap-1">
             {idea.hookOptions
               .filter((h) => h !== idea.recommendedHook)
               .map((h, i) => (
-                <span key={i} className="rounded-full bg-indigo-100 px-2 py-0.5 text-xs text-indigo-600">
+                <span key={i} className="rounded-full bg-brand/10 px-2 py-0.5 text-xs text-brand">
                   Alt: &ldquo;{h}&rdquo;
                 </span>
               ))}
@@ -163,15 +163,15 @@ function IdeaCard({ idea, index }: { idea: ContentIdea; index: number }) {
               </div>
               <div className="space-y-3 text-sm">
                 <div>
-                  <span className="font-medium text-indigo-600">Opening (0-3s):</span>
+                  <span className="font-medium text-brand">Opening (0-3s):</span>
                   <p className="mt-1 text-gray-700">{idea.script.opening}</p>
                 </div>
                 <div>
-                  <span className="font-medium text-indigo-600">Body:</span>
+                  <span className="font-medium text-brand">Body:</span>
                   <p className="mt-1 text-gray-700">{idea.script.body}</p>
                 </div>
                 <div>
-                  <span className="font-medium text-indigo-600">Closing:</span>
+                  <span className="font-medium text-brand">Closing:</span>
                   <p className="mt-1 text-gray-700">{idea.script.closing}</p>
                 </div>
               </div>
@@ -276,7 +276,7 @@ export default function ContentStudioPage() {
           {/* Product Selection */}
           <div className="rounded-xl border border-gray-200 bg-white p-5">
             <h2 className="text-base font-semibold text-gray-900 mb-4 flex items-center gap-2">
-              <TrendingUp className="h-5 w-5 text-indigo-600" />
+              <TrendingUp className="h-5 w-5 text-brand" />
               1. Select Trending Product
             </h2>
             <div className="space-y-2 max-h-64 overflow-y-auto">
@@ -290,7 +290,7 @@ export default function ContentStudioPage() {
                   }}
                   className={`w-full text-left rounded-lg border p-3 transition-all ${
                     selectedProduct?.id === product.id
-                      ? 'border-indigo-500 bg-indigo-50 ring-1 ring-indigo-500'
+                      ? 'border-brand bg-brand/5 ring-1 ring-brand'
                       : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
                   }`}
                 >
@@ -405,7 +405,7 @@ export default function ContentStudioPage() {
           <button
             onClick={handleGenerate}
             disabled={!selectedProduct || generating}
-            className="w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 px-6 py-3 text-sm font-semibold text-white shadow-lg transition-all hover:from-indigo-500 hover:to-purple-500 disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-none"
+            className="w-full flex items-center justify-center gap-2 rounded-xl bg-brand text-white shadow-lg transition-all hover:bg-brand-dark disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-none"
           >
             {generating ? (
               <>
@@ -442,7 +442,7 @@ export default function ContentStudioPage() {
 
           {generating && (
             <div className="flex flex-col items-center justify-center rounded-xl border border-gray-200 bg-white py-20 text-center">
-              <Loader2 className="h-12 w-12 animate-spin text-indigo-600 mb-4" />
+              <Loader2 className="h-12 w-12 animate-spin text-brand mb-4" />
               <h3 className="text-lg font-semibold text-gray-900">Analyzing market data...</h3>
               <p className="mt-2 text-sm text-gray-500">
                 AI is analyzing winning patterns and generating content ideas.
@@ -459,14 +459,14 @@ export default function ContentStudioPage() {
 
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div>
-                    <h3 className="text-sm font-semibold text-indigo-700 mb-2 flex items-center gap-2">
+                    <h3 className="text-sm font-semibold text-brand-dark mb-2 flex items-center gap-2">
                       <TrendingUp className="h-4 w-4" />
                       Market Insights
                     </h3>
                     <ul className="space-y-1">
                       {result.marketInsights.map((insight, i) => (
                         <li key={i} className="text-sm text-gray-600 flex items-start gap-2">
-                          <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-indigo-400" />
+                          <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-brand/40" />
                           {insight}
                         </li>
                       ))}

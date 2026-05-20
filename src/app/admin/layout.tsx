@@ -38,6 +38,14 @@ const marketIntelLinks = [
   { href: '/admin/kalodata', label: 'Market Intelligence', icon: BarChart3 },
 ];
 
+const linkClasses = (active: boolean) =>
+  cn(
+    'flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors',
+    active
+      ? 'bg-brand text-white'
+      : 'text-text-muted hover:bg-gray-100 hover:text-text',
+  );
+
 export default function AdminLayout({
   children,
 }: {
@@ -73,17 +81,17 @@ export default function AdminLayout({
       {/* Sidebar */}
       <aside
         className={cn(
-          'fixed inset-y-0 left-0 z-50 flex w-64 flex-col border-r border-gray-200 bg-white transition-transform duration-200 lg:static lg:translate-x-0',
+          'fixed inset-y-0 left-0 z-50 flex w-64 flex-col border-r border-border bg-white transition-transform duration-200 lg:static lg:translate-x-0',
           mobileMenuOpen ? 'translate-x-0' : '-translate-x-full',
         )}
       >
-        <div className="flex h-16 items-center justify-between border-b border-gray-200 px-6">
-          <Link href="/admin" className="text-lg font-bold text-gray-900">
-            Admin Panel
+        <div className="flex h-16 items-center justify-between border-b border-border px-6">
+          <Link href="/admin" className="text-lg font-bold text-text">
+            Espacio <span className="text-brand">EME</span>
           </Link>
           <button
             onClick={() => setMobileMenuOpen(false)}
-            className="rounded-lg p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-600 lg:hidden"
+            className="rounded-lg p-1 text-text-muted hover:bg-gray-100 hover:text-text lg:hidden"
           >
             <X className="h-5 w-5" />
           </button>
@@ -92,7 +100,7 @@ export default function AdminLayout({
         <nav className="flex-1 space-y-4 px-3 py-4">
           {/* Content section */}
           <div>
-            <p className="mb-1 px-3 text-xs font-semibold uppercase tracking-wider text-gray-400">
+            <p className="mb-1 px-3 text-xs font-semibold uppercase tracking-wider text-text-muted/60">
               Content Creation
             </p>
             {sidebarLinks.map((link) => {
@@ -103,12 +111,7 @@ export default function AdminLayout({
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={cn(
-                    'flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors',
-                    active
-                      ? 'bg-gray-900 text-white'
-                      : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900',
-                  )}
+                  className={linkClasses(active)}
                 >
                   <Icon className="h-4 w-4" />
                   {link.label}
@@ -119,7 +122,7 @@ export default function AdminLayout({
 
           {/* Store section */}
           <div>
-            <p className="mb-1 px-3 text-xs font-semibold uppercase tracking-wider text-gray-400">
+            <p className="mb-1 px-3 text-xs font-semibold uppercase tracking-wider text-text-muted/60">
               Store
             </p>
             {storeLinks.map((link) => {
@@ -130,12 +133,7 @@ export default function AdminLayout({
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={cn(
-                    'flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors',
-                    active
-                      ? 'bg-gray-900 text-white'
-                      : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900',
-                  )}
+                  className={linkClasses(active)}
                 >
                   <Icon className="h-4 w-4" />
                   {link.label}
@@ -146,7 +144,7 @@ export default function AdminLayout({
 
           {/* Market Intelligence section */}
           <div>
-            <p className="mb-1 px-3 text-xs font-semibold uppercase tracking-wider text-gray-400">
+            <p className="mb-1 px-3 text-xs font-semibold uppercase tracking-wider text-text-muted/60">
               Market Intelligence
             </p>
             {marketIntelLinks.map((link) => {
@@ -157,12 +155,7 @@ export default function AdminLayout({
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={cn(
-                    'flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors',
-                    active
-                      ? 'bg-gray-900 text-white'
-                      : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900',
-                  )}
+                  className={linkClasses(active)}
                 >
                   <Icon className="h-4 w-4" />
                   {link.label}
@@ -173,7 +166,7 @@ export default function AdminLayout({
         </nav>
 
         {/* User section */}
-        <div className="border-t border-gray-200 px-4 py-3">
+        <div className="border-t border-border px-4 py-3">
           {loading ? (
             <div className="flex items-center gap-3">
               <div className="h-8 w-8 animate-pulse rounded-full bg-gray-200" />
@@ -185,22 +178,22 @@ export default function AdminLayout({
           ) : user ? (
             <div className="space-y-3">
               <div className="flex items-center gap-3">
-                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-900 text-sm font-medium text-white">
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-brand text-sm font-medium text-white">
                   {user.name?.[0]?.toUpperCase() || user.email[0].toUpperCase()}
                 </div>
                 <div className="min-w-0 flex-1">
-                  <p className="truncate text-sm font-medium text-gray-900">
+                  <p className="truncate text-sm font-medium text-text">
                     {user.name || user.email}
                   </p>
                   {user.name && (
-                    <p className="truncate text-xs text-gray-500">{user.email}</p>
+                    <p className="truncate text-xs text-text-muted">{user.email}</p>
                   )}
                 </div>
               </div>
               <div className="flex gap-2">
                 <Link
                   href="/shop"
-                  className="flex-1 text-center text-xs text-gray-500 hover:text-gray-700"
+                  className="flex-1 text-center text-xs text-text-muted hover:text-text"
                 >
                   ← Shop
                 </Link>
@@ -216,7 +209,7 @@ export default function AdminLayout({
           ) : (
             <Link
               href="/shop/auth/login"
-              className="text-sm text-gray-500 hover:text-gray-700"
+              className="text-sm text-text-muted hover:text-text"
             >
               ← Sign in
             </Link>
@@ -227,15 +220,15 @@ export default function AdminLayout({
       {/* Main content */}
       <div className="flex flex-1 flex-col">
         {/* Mobile header */}
-        <header className="flex h-16 items-center gap-4 border-b border-gray-200 bg-white px-4 lg:hidden">
+        <header className="flex h-16 items-center gap-4 border-b border-border bg-white px-4 lg:hidden">
           <button
             onClick={() => setMobileMenuOpen(true)}
-            className="rounded-lg p-1 text-gray-600 hover:bg-gray-100"
+            className="rounded-lg p-1 text-text-muted hover:bg-gray-100"
           >
             <Menu className="h-5 w-5" />
           </button>
-          <Link href="/admin" className="text-lg font-bold text-gray-900">
-            Admin Panel
+          <Link href="/admin" className="text-lg font-bold text-text">
+            Espacio <span className="text-brand">EME</span>
           </Link>
         </header>
 

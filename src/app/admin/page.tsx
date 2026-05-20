@@ -29,7 +29,7 @@ export default async function AdminDashboardPage() {
       label: 'Total Products',
       value: productCount,
       icon: TrendingUp,
-      color: 'bg-blue-100 text-blue-600',
+      color: 'bg-brand/10 text-brand',
     },
     {
       label: 'Categories',
@@ -51,7 +51,7 @@ export default async function AdminDashboardPage() {
       label: 'Content Studio',
       description: 'Generate viral content ideas from TikTok Shop trending data',
       icon: Clapperboard,
-      color: 'from-indigo-500 to-purple-600',
+      color: 'from-brand to-brand-dark',
       badge: 'New',
     },
     {
@@ -81,32 +81,32 @@ export default async function AdminDashboardPage() {
     <div className="space-y-8">
       {/* Header */}
       <div>
-        <h1 className="text-2xl font-bold text-gray-900">Espacio EME — Content Studio</h1>
-        <p className="mt-2 text-sm text-gray-600">
+        <h1 className="text-2xl font-bold text-text">Espacio EME — Content Studio</h1>
+        <p className="mt-2 text-sm text-text-muted">
           Use TikTok Shop data as market intelligence to create viral content for any brand or client.
         </p>
       </div>
 
       {/* Store Stats */}
       <div>
-        <h2 className="text-sm font-semibold uppercase tracking-wider text-gray-400 mb-4">Store Overview</h2>
+        <h2 className="text-sm font-semibold uppercase tracking-wider text-text-muted mb-4">Store Overview</h2>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {storeStats.map((stat) => {
             const Icon = stat.icon;
             return (
               <div
                 key={stat.label}
-                className="rounded-xl border border-gray-200 bg-white p-6"
+                className="rounded-lg border border-border bg-white p-6"
               >
                 <div className="flex items-center gap-4">
                   <div className={`rounded-lg p-3 ${stat.color}`}>
                     <Icon className="h-5 w-5" />
                   </div>
                   <div>
-                    <p className="text-2xl font-bold text-gray-900">
+                    <p className="text-2xl font-bold text-text">
                       {stat.value}
                     </p>
-                    <p className="text-sm text-gray-600">{stat.label}</p>
+                    <p className="text-sm text-text-muted">{stat.label}</p>
                   </div>
                 </div>
               </div>
@@ -117,7 +117,7 @@ export default async function AdminDashboardPage() {
 
       {/* Content Creation Tools */}
       <div>
-        <h2 className="text-sm font-semibold uppercase tracking-wider text-gray-400 mb-4">Content Creation Tools</h2>
+        <h2 className="text-sm font-semibold uppercase tracking-wider text-text-muted mb-4">Content Creation Tools</h2>
         <div className="grid gap-4 sm:grid-cols-2">
           {contentTools.map((tool) => {
             const Icon = tool.icon;
@@ -125,23 +125,24 @@ export default async function AdminDashboardPage() {
               <Link
                 key={tool.href}
                 href={tool.href}
-                className="group relative overflow-hidden rounded-xl border border-gray-200 bg-white p-6 transition-all hover:border-transparent hover:shadow-lg"
+                className="group relative overflow-hidden rounded-lg border border-border bg-white p-6 transition-all hover:border-brand hover:shadow-lg"
               >
-                <div className={`absolute inset-0 bg-gradient-to-br ${tool.color} opacity-0 transition-opacity group-hover:opacity-5`} />
+                {/* Brand accent line on hover */}
+                <div className={`absolute left-0 top-0 h-0.5 w-0 bg-gradient-to-r ${tool.color} transition-all group-hover:w-full`} />
                 <div className="relative flex items-start gap-4">
-                  <div className={`flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${tool.color} text-white`}>
+                  <div className={`flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-gradient-to-br ${tool.color} text-white`}>
                     <Icon className="h-6 w-6" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
-                      <h3 className="text-base font-semibold text-gray-900">{tool.label}</h3>
+                      <h3 className="text-base font-semibold text-text">{tool.label}</h3>
                       {tool.badge && (
-                        <span className="rounded-full bg-indigo-100 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-indigo-700">
+                        <span className="rounded-full bg-brand/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-brand">
                           {tool.badge}
                         </span>
                       )}
                     </div>
-                    <p className="mt-1 text-sm text-gray-500">{tool.description}</p>
+                    <p className="mt-1 text-sm text-text-muted">{tool.description}</p>
                   </div>
                 </div>
               </Link>
@@ -152,8 +153,8 @@ export default async function AdminDashboardPage() {
 
       {/* Workflow */}
       <div>
-        <h2 className="text-sm font-semibold uppercase tracking-wider text-gray-400 mb-4">Content Workflow</h2>
-        <div className="rounded-xl border border-gray-200 bg-white p-6">
+        <h2 className="text-sm font-semibold uppercase tracking-wider text-text-muted mb-4">Content Workflow</h2>
+        <div className="rounded-lg border border-border bg-white p-6">
           <div className="grid gap-4 sm:grid-cols-4">
             {[
               { step: 1, label: 'Discover', desc: 'Find trending products on Kalodata', href: '/admin/kalodata', emoji: '🔍' },
@@ -164,12 +165,12 @@ export default async function AdminDashboardPage() {
               <Link
                 key={item.step}
                 href={item.href}
-                className="group relative rounded-lg border border-gray-100 bg-gray-50 p-4 text-center transition-all hover:border-indigo-200 hover:bg-indigo-50/50"
+                className="group relative rounded-lg border border-border bg-gray-50 p-4 text-center transition-all hover:border-brand hover:bg-brand/5"
               >
                 <div className="text-2xl mb-2">{item.emoji}</div>
-                <div className="text-xs font-bold text-indigo-600 mb-1">Step {item.step}</div>
-                <div className="text-sm font-semibold text-gray-900">{item.label}</div>
-                <div className="mt-1 text-xs text-gray-500">{item.desc}</div>
+                <div className="text-xs font-bold text-brand mb-1">Step {item.step}</div>
+                <div className="text-sm font-semibold text-text">{item.label}</div>
+                <div className="mt-1 text-xs text-text-muted">{item.desc}</div>
               </Link>
             ))}
           </div>
