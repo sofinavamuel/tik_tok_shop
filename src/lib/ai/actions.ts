@@ -92,3 +92,34 @@ export async function saveContentIdeasAction(input: {
   if (error) throw new Error(`Failed to save content ideas: ${error.message}`);
   return { saved: rows.length };
 }
+
+export async function getSavedContentIdeasAction(params?: {
+  limit?: number;
+  offset?: number;
+  product?: string;
+  brand?: string;
+}): Promise<{ data: any[]; total: number }> {
+  let query = insforge.database.from('content_ideas').select('*', { count: 'exact' });
+
+  if (params?.product) {
+    query = query.ilike('product_name', `%${params.product}%`);
+  }
+  if (params?.brand) {
+    query = query.ilike('brand_name', `%${params.brand}%`);
+  }
+
+  const limit = params?.limit || 50;
+  const offset = params?.offset || 0;
+
+  const { data, error, count } = await query
+    .order('created_at', { ascending: false })
+    .range(offset, offset + limit - 1);
+
+  if (error) throw new Error(`Failed to fetch content ideas: ${error.message}`);
+  return { data: data ?? [], total: count ?? 0 };
+}
+
+export async function deleteContentIdeaAction(id: string): Promise<void> {
+  const { error } = await insforge.database.from('content_ideas').delete().eq('id', id);
+  if (error) throw new Error(`Failed to delete content idea: ${error.message}`);
+}

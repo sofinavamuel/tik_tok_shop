@@ -16,6 +16,7 @@ import {
   BarChart3,
   Bot,
   Clapperboard,
+  Library,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useAuth } from '@/hooks/useAuth';
@@ -23,6 +24,7 @@ import { useAuth } from '@/hooks/useAuth';
 const sidebarLinks = [
   { href: '/admin', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/admin/content-studio', label: 'Content Studio', icon: Clapperboard },
+  { href: '/admin/content-studio/history', label: 'Ideas Library', icon: Library },
   { href: '/admin/briefings', label: 'Briefings', icon: FileText },
   { href: '/admin/analysis', label: 'Analysis', icon: Sparkles },
   { href: '/admin/agents', label: 'Agents', icon: Bot },
