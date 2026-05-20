@@ -12,6 +12,7 @@ import {
   Menu,
   X,
   LogOut,
+  FileText,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useAuth } from '@/hooks/useAuth';
@@ -21,6 +22,7 @@ const sidebarLinks = [
   { href: '/admin/products', label: 'Products', icon: Package },
   { href: '/admin/categories', label: 'Categories', icon: FolderTree },
   { href: '/admin/orders', label: 'Orders', icon: ShoppingCart },
+  { href: '/admin/briefings', label: 'Briefings', icon: FileText },
   { href: '/admin/analysis', label: 'Analysis', icon: Sparkles },
 ];
 

@@ -12,6 +12,7 @@ import {
   updateVideo,
   createBriefing,
   updateBriefing,
+  deleteBriefing,
   getVideo,
   getBriefing,
 } from '@/lib/strapi/client';
@@ -337,6 +338,42 @@ export async function regenerateBriefingAction(id: number) {
 
     revalidatePath('/admin/briefings');
     revalidatePath(`/admin/briefings/${id}`);
+    return { success: true };
+  } catch (err) {
+    return {
+      error: err instanceof Error ? err.message : 'An unexpected error occurred',
+    };
+  }
+}
+
+export async function updateBriefingAction(id: number, formData: FormData) {
+  try {
+    const raw = parseFormData(formData);
+    const validated = briefingSchema.parse(raw);
+
+    await updateBriefing(id, {
+      title: validated.title,
+      target_audience: validated.target_audience,
+      status: validated.status,
+    });
+
+    revalidatePath('/admin/briefings');
+    revalidatePath(`/admin/briefings/${id}`);
+    return { success: true };
+  } catch (err) {
+    if (err instanceof z.ZodError) {
+      return { error: err.issues.map((e: { message: string }) => e.message).join(', ') };
+    }
+    return {
+      error: err instanceof Error ? err.message : 'An unexpected error occurred',
+    };
+  }
+}
+
+export async function deleteBriefingAction(id: number) {
+  try {
+    await deleteBriefing(id);
+    revalidatePath('/admin/briefings');
     return { success: true };
   } catch (err) {
     return {
