@@ -122,12 +122,12 @@ Return a JSON object with this exact structure:
   "recommendedApproach": "Overall recommendation — which idea to start with and why"
 }
 
-Generate exactly 5 content ideas. Each should have a DIFFERENT angle and hook type. Base them on the actual winning patterns from the data, but adapt them creatively.
+Generate exactly 3 content ideas. Each should have a DIFFERENT angle and hook type. Base them on the actual winning patterns from the data, but adapt them creatively.
 
 IMPORTANT: Return ONLY valid JSON. No markdown, no explanations outside the JSON.`;
 
   const completion = await insforge.ai.chat.completions.create({
-    model: 'anthropic/claude-sonnet-4.5',
+    model: 'openai/gpt-4o-mini',
     messages: [
       {
         role: 'system',
