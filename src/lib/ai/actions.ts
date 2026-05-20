@@ -53,3 +53,42 @@ export async function saveBriefingToStrapiAction(input: {
     status: input.status,
   });
 }
+
+export async function saveContentIdeasAction(input: {
+  result: ContentIdeasResult;
+  productName: string;
+  productCategory: string;
+  brandName?: string;
+  targetMarket?: string;
+  contentGoal?: string;
+}): Promise<{ saved: number }> {
+  const rows = input.result.ideas.map((idea) => ({
+    title: idea.title,
+    angle: idea.angle,
+    hook_options: idea.hookOptions,
+    recommended_hook: idea.recommendedHook,
+    hook_type: idea.hookType,
+    script: idea.script,
+    structure: idea.structure,
+    visual_style: idea.visualStyle,
+    audio_direction: idea.audioDirection,
+    duration: idea.duration,
+    cta: idea.cta,
+    why_it_works: idea.whyItWorks,
+    adapted_from: idea.adaptedFrom,
+    confidence_score: idea.confidenceScore,
+    product_name: input.productName,
+    product_category: input.productCategory,
+    brand_name: input.brandName || null,
+    target_market: input.targetMarket || null,
+    content_goal: input.contentGoal || null,
+    market_insights: input.result.marketInsights,
+    winning_patterns: input.result.winningPatterns,
+    product_summary: input.result.productSummary,
+    recommended_approach: input.result.recommendedApproach,
+  }));
+
+  const { error } = await insforge.database.from('content_ideas').insert(rows);
+  if (error) throw new Error(`Failed to save content ideas: ${error.message}`);
+  return { saved: rows.length };
+}

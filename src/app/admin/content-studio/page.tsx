@@ -5,7 +5,7 @@ import {
   MOCK_PRODUCTS,
   MOCK_VIDEO_INSIGHTS,
 } from '@/lib/kalodata/client';
-import { generateContentIdeasAction } from '@/lib/ai/actions';
+import { generateContentIdeasAction, saveContentIdeasAction } from '@/lib/ai/actions';
 import type { KalodataProduct, KalodataVideoInsight } from '@/lib/kalodata/types';
 import type { ContentIdeasResult, ContentIdea } from '@/lib/ai/generate-content-ideas';
 import {
@@ -229,6 +229,8 @@ export default function ContentStudioPage() {
   const [result, setResult] = useState<ContentIdeasResult | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [saved, setSaved] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [saveError, setSaveError] = useState<string | null>(null);
 
   // Filter video insights for selected product
   const productInsights = useMemo(() => {
@@ -257,6 +259,28 @@ export default function ContentStudioPage() {
       setError(err instanceof Error ? err.message : 'An unexpected error occurred');
     } finally {
       setGenerating(false);
+    }
+  };
+
+  const handleSave = async () => {
+    if (!result || !selectedProduct) return;
+    setSaving(true);
+    setSaveError(null);
+
+    try {
+      await saveContentIdeasAction({
+        result,
+        productName: selectedProduct.name,
+        productCategory: selectedProduct.category,
+        brandName: brandName || undefined,
+        targetMarket: targetMarket || undefined,
+        contentGoal,
+      });
+      setSaved(true);
+    } catch (err) {
+      setSaveError(err instanceof Error ? err.message : 'Failed to save ideas');
+    } finally {
+      setSaving(false);
     }
   };
 
@@ -498,9 +522,43 @@ export default function ContentStudioPage() {
 
               {/* Content Ideas */}
               <div>
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">
-                  Generated Content Ideas ({result.ideas.length})
-                </h2>
+                <div className="flex items-center justify-between mb-4">
+                  <h2 className="text-lg font-semibold text-gray-900">
+                    Generated Content Ideas ({result.ideas.length})
+                  </h2>
+                  <button
+                    onClick={handleSave}
+                    disabled={saving || saved}
+                    className={`inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-all ${
+                      saved
+                        ? 'bg-emerald-100 text-emerald-700 cursor-default'
+                        : 'bg-brand text-white hover:bg-brand-dark disabled:opacity-50'
+                    }`}
+                  >
+                    {saving ? (
+                      <>
+                        <Loader2 className="h-4 w-4 animate-spin" />
+                        Saving...
+                      </>
+                    ) : saved ? (
+                      <>
+                        <CheckCircle className="h-4 w-4" />
+                        Saved!
+                      </>
+                    ) : (
+                      <>
+                        <Save className="h-4 w-4" />
+                        Save All Ideas
+                      </>
+                    )}
+                  </button>
+                </div>
+                {saveError && (
+                  <div className="flex items-center gap-2 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 mb-4">
+                    <AlertCircle className="h-4 w-4 flex-shrink-0" />
+                    {saveError}
+                  </div>
+                )}
                 <div className="space-y-4">
                   {result.ideas.map((idea, index) => (
                     <IdeaCard key={idea.id} idea={idea} index={index} />
