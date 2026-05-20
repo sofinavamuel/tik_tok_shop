@@ -14,6 +14,7 @@ import {
   LogOut,
   FileText,
   BarChart3,
+  Bot,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useAuth } from '@/hooks/useAuth';
@@ -25,6 +26,7 @@ const sidebarLinks = [
   { href: '/admin/orders', label: 'Orders', icon: ShoppingCart },
   { href: '/admin/briefings', label: 'Briefings', icon: FileText },
   { href: '/admin/analysis', label: 'Analysis', icon: Sparkles },
+  { href: '/admin/agents', label: 'Agents', icon: Bot },
 ];
 
 const marketIntelLinks = [
